@@ -34,6 +34,7 @@ const questions = [
 
 // Display the quiz questions and choices
 function renderQuestions() {
+	questionsElement.innerHTML="";
   for (let i = 0; i < questions.length; i++) {
     const question = questions[i];
     const questionElement = document.createElement("div");
