@@ -79,7 +79,7 @@ submitbtn.addEventListener("click",()=>{
 	questions.forEach((question,index)=>{
 		if(userAnswers[index]===question.answer) score++;
 	});
-	document.getElementById("score").textContent=`Your score is ${score} out of 5`;
+	document.getElementById("score").textContent=`Your score is ${score} out of 5.`;
 	localStorage.setItem("score",score);
 });
 
