@@ -2,6 +2,8 @@
 
 // Do not change code below this line
 // This code will just display the questions to the screen
+const questionsElement=document.getElementById("questions");
+let userAnswers={};
 const questions = [
   {
     question: "What is the capital of France?",
@@ -53,4 +55,47 @@ function renderQuestions() {
     questionsElement.appendChild(questionElement);
   }
 }
+
+function loadProgress(){
+	const saved=sessionStorage.getItem("progress");
+	if(saved){
+		userAnswers=JSON.parse(saved);
+	}
+}
+loadProgress();
 renderQuestions();
+const submitbtn=document.getElementById("submit");
+document.addEventListener("change",(e)=>{
+	if(e.target.type==="radio"){
+		const index=e.target.name.split("-") [1];
+		const value=e.target.value;
+		userAnswers[index]=value;
+		sessionStorage.setItem("progress",JSON.stringify(userAnswers));
+	}
+});
+submitbtn.addEventListener("click",()=>{
+	let score=0;
+	questions.forEach((question,index)=>{
+		if(userAnswers[index]===questions.answer) score++;
+	});
+	document.getElementById("score").textContent=`Your score is ${score} out of 5`;
+	localStorage.setItem("score",score);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
